@@ -1,33 +1,103 @@
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useDefaultLocation } from "@/hooks/use-default-location";
+import { useCart } from "@/contexts/cart";
 
 interface DealCardProps {
   dealNumber: number;
   items: string[];
   price: number;
   isComingSoon?: boolean;
+  image?: string;
 }
 
-const DealCard = ({ dealNumber, items, price, isComingSoon = false }: DealCardProps) => {
-  const handleWhatsAppOrder = () => {
+const DealCard = ({
+  dealNumber,
+  items,
+  price,
+  isComingSoon = false,
+  image,
+}: DealCardProps) => {
+  const { location, requestLocation } = useDefaultLocation();
+
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: `deal-${dealNumber}`,
+      dealNumber,
+      title: `Deal ${dealNumber}`,
+      price,
+      image,
+      items,
+    });
+  };
+
+  const handleWhatsAppOrder = async () => {
     const itemsList = items.join(", ");
-    const message = encodeURIComponent(
-      `Hello Lavashak Hub! 🍬\nI'd like to order Deal ${dealNumber} (Rs. ${price})\nItems: ${itemsList}\n\nName: [Your Name]\nAddress: [Your Address]`
-    );
-    window.open(`https://wa.me/YOUR_NUMBER?text=${message}`, "_blank");
+
+    // If we don't already have a saved location, attempt to detect it now.
+    // Race detection with a short timeout so we don't block the user too long.
+    let detected = location;
+    if (!detected) {
+      try {
+        const detectionPromise = requestLocation({ timeout: 8000 });
+        const timeout = new Promise<null>((res) =>
+          setTimeout(() => res(null), 8000)
+        );
+        const result = await Promise.race([detectionPromise, timeout]);
+        if (result) detected = result;
+      } catch (e) {
+        console.warn("Location detection failed", e);
+      }
+    }
+
+    const rawMessage =
+      `Hello Lavashak Hub! 🍬\nI'd like to order Deal ${dealNumber} (Rs. ${price})\nItems: ${itemsList}\n\nName: [Your Name]\nAddress: ${
+        detected?.address ?? "[Your Address]"
+      }` + (image ? `\n\nImage: ${image}` : "");
+
+    const message = encodeURIComponent(rawMessage);
+    const url = `https://wa.me/923114353367?text=${message}`;
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   return (
-    <Card className="hover-lift overflow-hidden group relative border-2 hover:border-primary/50 transition-colors">
+    <Card className="hover-lift overflow-hidden group relative border-2 border-red-200 hover:border-primary/50 transition-colors">
       {isComingSoon && (
         <div className="absolute top-4 right-4 z-10 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold">
           Coming Soon
         </div>
       )}
-      
+
+      {image && (
+        <div className="w-full h-64 md:h-72 lg:h-80 overflow-hidden">
+          <img
+            src={image}
+            alt={`Deal ${dealNumber}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
+
       <div className="h-2 gradient-card" />
-      
+
       <CardHeader>
         <CardTitle className="text-2xl flex items-center gap-2">
           <span className="w-10 h-10 rounded-full gradient-hero flex items-center justify-center text-white font-bold">
@@ -36,10 +106,12 @@ const DealCard = ({ dealNumber, items, price, isComingSoon = false }: DealCardPr
           Deal {dealNumber}
         </CardTitle>
         <CardDescription className="text-base">
-          {isComingSoon ? "Custom deal option coming soon!" : "Special combo package"}
+          {isComingSoon
+            ? "Custom deal option coming soon!"
+            : "Special combo package"}
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent>
         <div className="space-y-2">
           {items.map((item, index) => (
@@ -49,7 +121,7 @@ const DealCard = ({ dealNumber, items, price, isComingSoon = false }: DealCardPr
             </div>
           ))}
         </div>
-        
+
         <div className="mt-6 pt-4 border-t">
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">Rs. {price}</span>
@@ -66,16 +138,25 @@ const DealCard = ({ dealNumber, items, price, isComingSoon = false }: DealCardPr
           )}
         </div>
       </CardContent>
-      
+
       <CardFooter>
-        <Button
-          onClick={handleWhatsAppOrder}
-          disabled={isComingSoon}
-          className="w-full gradient-hero text-white shadow-glow group-hover:shadow-float transition-shadow"
-        >
-          <ShoppingCart className="mr-2 w-4 h-4" />
-          {isComingSoon ? "Coming Soon" : "Order on WhatsApp"}
-        </Button>
+        {!isComingSoon ? (
+          <div className="w-full grid grid-cols-2 gap-3">
+            <Button onClick={handleAddToCart} className="w-full">
+              Add to Cart
+            </Button>
+            <Button
+              onClick={handleWhatsAppOrder}
+              className="w-full gradient-hero text-white"
+            >
+              Quick Order
+            </Button>
+          </div>
+        ) : (
+          <Button disabled className="w-full">
+            Coming Soon
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

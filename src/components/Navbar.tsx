@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X, ShoppingBag, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/cart";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
+  const { count } = useCart();
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navLinks = [
@@ -25,23 +24,32 @@ const Navbar = () => {
   ];
 
   const handleWhatsAppOrder = () => {
-    const message = encodeURIComponent("Hello Lavashak Hub! 🍬 I'd like to know more about your products.");
-    window.open(`https://wa.me/YOUR_NUMBER?text=${message}`, "_blank");
+    const message = encodeURIComponent(
+      "Hello Lavashak Hub! 🍬 I'd like to know more about your products."
+    );
+    const url = `https://wa.me/923114353367?text=${message}`;
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card/95 backdrop-blur-md shadow-card" : "bg-transparent"
+        isScrolled
+          ? "bg-card/95 backdrop-blur-md shadow-card"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-2 group">
             <ShoppingBag className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-            <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              Lavashak Hub
-            </span>
+            <span className="text-2xl font-bold text-white">Lavashak Hub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -59,7 +67,16 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button onClick={handleWhatsAppOrder} className="gradient-hero text-white shadow-glow">
+            <Link to="/cart" className="relative">
+              <ShoppingCart className="w-6 h-6 text-foreground" />
+              <span className="absolute -top-2 -right-3 bg-primary text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {count}
+              </span>
+            </Link>
+            <Button
+              onClick={handleWhatsAppOrder}
+              className="gradient-hero text-white shadow-glow"
+            >
               Order Now
             </Button>
           </div>
@@ -72,6 +89,17 @@ const Navbar = () => {
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+        {/* Floating cart button for small screens */}
+        <Link
+          to="/cart"
+          className="md:hidden fixed bottom-6 right-4 z-50 flex items-center gap-3 bg-primary text-white px-3 py-2 rounded-full shadow-lg hover:scale-105 transition-transform"
+        >
+          <ShoppingCart className="w-5 h-5" />
+          <span className="text-sm font-medium">Cart</span>
+          <span className="absolute -top-2 -right-2 bg-white text-primary rounded-full text-xs w-5 h-5 flex items-center justify-center">
+            {count}
+          </span>
+        </Link>
 
         {/* Mobile Navigation */}
         {isOpen && (
@@ -82,13 +110,18 @@ const Navbar = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.path ? "text-primary" : "text-foreground"
+                  location.pathname === link.path
+                    ? "text-primary"
+                    : "text-foreground"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Button onClick={handleWhatsAppOrder} className="w-full mt-4 gradient-hero text-white">
+            <Button
+              onClick={handleWhatsAppOrder}
+              className="w-full mt-4 gradient-hero text-white"
+            >
               Order Now
             </Button>
           </div>

@@ -41,22 +41,34 @@ const Footer = () => {
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/deals" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/deals"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Deals
                 </Link>
               </li>
               <li>
-                <Link to="/menu" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/menu"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Menu
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  to="/about"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   About
                 </Link>
               </li>
@@ -81,13 +93,18 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 mt-0.5 text-primary" />
-                <a href="https://wa.me/YOUR_NUMBER" className="hover:text-primary transition-colors">
-                  WhatsApp: +92 XXX XXXXXXX
+                <a
+                  href="https://wa.me/923114353367"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  WhatsApp: +923114353367
                 </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary" />
-                <span>Your Location, City, Pakistan</span>
+                <span>Lahore, Pakistan</span>
               </li>
             </ul>
           </div>

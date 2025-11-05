@@ -4,8 +4,17 @@ import heroImage from "@/assets/hero-lavashak.jpg";
 
 const Hero = () => {
   const handleWhatsAppOrder = () => {
-    const message = encodeURIComponent("Hello Lavashak Hub! 🍬 I'd like to order now.");
-    window.open(`https://wa.me/YOUR_NUMBER?text=${message}`, "_blank");
+    const message = encodeURIComponent(
+      "Hello Lavashak Hub! 🍬 I'd like to order now."
+    );
+    const url = `https://wa.me/923114353367?text=${message}`;
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   return (
@@ -22,8 +31,14 @@ const Hero = () => {
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-primary/20 blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full bg-secondary/20 blur-3xl animate-float" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-accent/20 blur-2xl animate-float" style={{ animationDelay: "2s" }} />
+      <div
+        className="absolute bottom-20 right-10 w-32 h-32 rounded-full bg-secondary/20 blur-3xl animate-float"
+        style={{ animationDelay: "1s" }}
+      />
+      <div
+        className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-accent/20 blur-2xl animate-float"
+        style={{ animationDelay: "2s" }}
+      />
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
@@ -33,17 +48,15 @@ const Hero = () => {
               🍬 Fresh, Fruity & Fun
             </span>
           </div>
-          
+
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
             Taste the
-            <span className="block gradient-hero bg-clip-text text-transparent">
-              Twist!
-            </span>
+            <span className="block text-white">Twist!</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl">
-            Experience the ultimate fusion of tangy, fruity flavors with our premium Lavashak snacks. 
-            Handcrafted for the perfect bite.
+            Experience the ultimate fusion of tangy, fruity flavors with our
+            premium Lavashak snacks. Handcrafted for the perfect bite.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -59,7 +72,11 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="text-lg h-14 px-8 border-2 hover:border-primary hover:text-primary"
-              onClick={() => document.getElementById("deals")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("deals")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               View Deals
             </Button>

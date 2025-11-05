@@ -6,15 +6,16 @@ const About = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      
+
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              About <span className="gradient-hero bg-clip-text text-transparent">Lavashak Hub</span>
+              About <span className="text-orange-500">Lavashak Hub</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Bringing the authentic taste of traditional fruit leather snacks to your doorstep
+              Bringing the authentic taste of traditional fruit leather snacks
+              to your doorstep
             </p>
           </div>
 
@@ -24,18 +25,22 @@ const About = () => {
               <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
               <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
                 <p>
-                  Lavashak Hub was born from a passion for preserving the authentic flavors of traditional 
-                  fruit leather snacks. What started as a family recipe has grown into a beloved brand that 
+                  Lavashak Hub was born from a passion for preserving the
+                  authentic flavors of traditional fruit leather snacks. What
+                  started as a family recipe has grown into a beloved brand that
                   brings joy to snack lovers across the region.
                 </p>
                 <p>
-                  We believe in using only the finest natural ingredients to create snacks that are not just 
-                  delicious, but also remind you of childhood memories and cultural heritage. Every bite of our 
-                  Lavashak carries the perfect balance of tangy, sweet, and spicy flavors.
+                  We believe in using only the finest natural ingredients to
+                  create snacks that are not just delicious, but also remind you
+                  of childhood memories and cultural heritage. Every bite of our
+                  Lavashak carries the perfect balance of tangy, sweet, and
+                  spicy flavors.
                 </p>
                 <p>
-                  Our commitment is simple: deliver premium quality snacks that bring smiles to faces and 
-                  satisfy cravings with authentic, natural goodness.
+                  Our commitment is simple: deliver premium quality snacks that
+                  bring smiles to faces and satisfy cravings with authentic,
+                  natural goodness.
                 </p>
               </div>
             </div>
@@ -49,7 +54,8 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-3">100% Natural</h3>
               <p className="text-muted-foreground">
-                Made with real fruits and natural ingredients, no artificial additives or preservatives
+                Made with real fruits and natural ingredients, no artificial
+                additives or preservatives
               </p>
             </div>
 
@@ -59,7 +65,8 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-3">Made with Love</h3>
               <p className="text-muted-foreground">
-                Each batch is carefully crafted with attention to detail and passion for quality
+                Each batch is carefully crafted with attention to detail and
+                passion for quality
               </p>
             </div>
 
@@ -69,21 +76,50 @@ const About = () => {
               </div>
               <h3 className="text-xl font-bold mb-3">Premium Quality</h3>
               <p className="text-muted-foreground">
-                We never compromise on quality, ensuring every product meets our high standards
+                We never compromise on quality, ensuring every product meets our
+                high standards
               </p>
             </div>
           </div>
 
           {/* Ingredients */}
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Our Ingredients</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">
+              Our Ingredients
+            </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {["Mango", "Tamarind", "Plum", "Apricot", "Spices", "Lemon", "Sugar", "Natural Colors"].map((ingredient) => (
-                <div key={ingredient} className="text-center p-6 rounded-xl bg-primary/5 border border-primary/10">
-                  <div className="text-4xl mb-2">🥭</div>
-                  <p className="font-medium">{ingredient}</p>
-                </div>
-              ))}
+              {[
+                "Mango",
+                "Tamarind",
+                "Plum",
+                "Apricot",
+                "Spices",
+                "Lemon",
+                "Sugar",
+                "Natural Colors",
+              ].map((ingredient) => {
+                const icons: Record<string, string> = {
+                  Mango: "🥭",
+                  Tamarind: "🫘",
+                  Plum: "🍑",
+                  Apricot: "🍑",
+                  Spices: "🌶️",
+                  Lemon: "🍋",
+                  Sugar: "🍬",
+                  "Natural Colors": "🎨",
+                };
+                return (
+                  <div
+                    key={ingredient}
+                    className="text-center p-6 rounded-xl bg-primary/5 border border-primary/10"
+                  >
+                    <div className="text-4xl mb-2" aria-hidden>
+                      {icons[ingredient] ?? "�"}
+                    </div>
+                    <p className="font-medium">{ingredient}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

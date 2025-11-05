@@ -2,25 +2,39 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useDefaultLocation } from "@/hooks/use-default-location";
 
 const Contact = () => {
   const handleWhatsAppContact = () => {
-    const message = encodeURIComponent("Hello Lavashak Hub! I'd like to get in touch.");
-    window.open(`https://wa.me/YOUR_NUMBER?text=${message}`, "_blank");
+    const message = encodeURIComponent(
+      "Hello Lavashak Hub! I'd like to get in touch."
+    );
+    const url = `https://wa.me/923114353367?text=${message}`;
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
+
+  const { location, loading, error, requestLocation, clearLocation } =
+    useDefaultLocation();
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      
+
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              Get In <span className="gradient-hero bg-clip-text text-transparent">Touch</span>
+              Get In <span className="text-white">Touch</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Have questions? We'd love to hear from you. Send us a message and
+              we'll respond as soon as possible.
             </p>
           </div>
 
@@ -34,8 +48,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">WhatsApp</h3>
-                    <p className="text-muted-foreground mb-3">Best way to reach us</p>
-                    <Button onClick={handleWhatsAppContact} className="gradient-hero text-white">
+                    <p className="text-muted-foreground mb-3">
+                      Best way to reach us
+                    </p>
+                    <Button
+                      onClick={handleWhatsAppContact}
+                      className="gradient-hero text-white"
+                    >
                       Message on WhatsApp
                     </Button>
                   </div>
@@ -49,10 +68,40 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-2">Location</h3>
-                    <p className="text-muted-foreground">
-                      Your Street Name<br />
-                      City, Province<br />
-                      Pakistan
+                    <p className="text-muted-foreground mb-3">
+                      {location?.address ? (
+                        <>
+                          {location.address}
+                          <br />
+                          <Button
+                            size={"sm"}
+                            className="mt-2"
+                            onClick={clearLocation}
+                          >
+                            Clear saved location
+                          </Button>
+                        </>
+                      ) : (
+                        <>
+                          <span>We don't have your location yet.</span>
+                          <br />
+                          <Button
+                            size={"sm"}
+                            className="mt-2"
+                            onClick={() => requestLocation()}
+                            disabled={loading}
+                          >
+                            {loading
+                              ? "Detecting..."
+                              : "Use my current location"}
+                          </Button>
+                          {error && (
+                            <div className="text-xs text-red-500 mt-2">
+                              {error}
+                            </div>
+                          )}
+                        </>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -66,7 +115,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Email</h3>
                     <p className="text-muted-foreground">
-                      info@lavashakhub.com
+                      hashirch819@gmail.com
                     </p>
                   </div>
                 </div>
@@ -74,7 +123,7 @@ const Contact = () => {
             </div>
 
             {/* Map */}
-            <div className="bg-card rounded-2xl shadow-card border overflow-hidden h-[500px]">
+            {/* <div className="bg-card rounded-2xl shadow-card border overflow-hidden h-[500px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.1654087453154!2d67.0099!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUxJzM4LjUiTiA2N8KwMDAnMzUuNiJF!5e0!3m2!1sen!2s!4v1234567890"
                 width="100%"
@@ -85,7 +134,7 @@ const Contact = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Lavashak Hub Location"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
