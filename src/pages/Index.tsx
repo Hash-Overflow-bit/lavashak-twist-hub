@@ -34,6 +34,7 @@ const featuredDeals = [
       "3 Balls",
       "3 Bars Stick",
       "3 Fruity Bars",
+      "1 Siwas Stick",
       "Extra Jellies",
       "1 Imli Dip",
     ],

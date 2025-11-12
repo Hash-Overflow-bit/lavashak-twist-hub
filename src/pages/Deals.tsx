@@ -18,8 +18,8 @@ const deals = [
     dealNumber: 2,
     items: [
       "3 Balls",
-      "3 Bars",
-      "3 Stick",
+      "3 HampaBars",
+      "3 Sivas Stick",
       "3 Fruity Bars",
       "3 Jelly",
       "1 Imli Dip",
@@ -29,7 +29,13 @@ const deals = [
   },
   {
     dealNumber: 3,
-    items: ["5 Loaded Rolls", "2 Masala Bars", "1 Siwas Stick", "1 Imli Dip"],
+    items: [
+      "5 Loaded Rolls",
+      "2 Masala Bars",
+      "1 Siwas Stick",
+      "1 Imli Dip",
+      "1 Siwas Stick",
+    ],
     image: deal3Img,
     price: 700,
   },
