@@ -26,7 +26,6 @@ const Hero = () => {
           alt="Lavashak Snacks"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
       </div>
 
       {/* Floating Elements */}

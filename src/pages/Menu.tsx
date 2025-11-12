@@ -78,7 +78,7 @@ const products: Product[] = [
     category: "Dips",
   },
 
-{
+  {
     id: 10,
     name: "Fresh Pomegranate",
     description: "Available inside and outside of the roll",
@@ -118,7 +118,7 @@ const Menu = () => {
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
               Our <span className="text-white">Menu</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
