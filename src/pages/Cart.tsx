@@ -36,7 +36,7 @@ const Cart = () => {
     const message = encodeURIComponent(
       `Hello Lavashak Hub!\nI'd like to place an order:\n\n${lines.join(
         "\n"
-      )}\n\nSubtotal: Rs. ${subtotal}\nDelivery: Rs. ${DELIVERY_CHARGE}\nTotal: Rs. ${grandTotal}\n\nAdvance payment (JazzCash): 03114353367\n\nDelivery Address: ${
+      )}\n\nSubtotal: Rs. ${subtotal}\nDelivery: Rs. ${DELIVERY_CHARGE}\nTotal: Rs. ${grandTotal}\n\nAdvance payment (EasyPaisa): 03114353367\n\nDelivery Address: ${
         detected?.address ?? "[Your Address]"
       }`
     );
@@ -141,7 +141,7 @@ const Cart = () => {
 
                 <div className="mb-4 p-4 rounded bg-yellow-50 border-l-4 border-yellow-400 text-sm">
                   For advance payment (optional) you can send the amount via
-                  JazzCash to <strong>03114353367</strong>. Please include your
+                  EasyPaisa to <strong>03114353367</strong>. Please include your
                   name and order reference when paying.
                 </div>
 

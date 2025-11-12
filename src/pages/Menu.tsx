@@ -145,22 +145,24 @@ const Menu = () => {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
             {filteredProducts.map((product) => (
               <Card
                 key={product.id}
                 className="hover-lift border-2 hover:border-primary/50 transition-colors"
               >
-                <div className="h-2 gradient-card" />
+                <div className="h-1 gradient-card" />
                 <CardHeader>
-                  <CardTitle className="text-xl">{product.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <CardTitle className="text-sm sm:text-base font-semibold">
+                    {product.name}
+                  </CardTitle>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     {product.description}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-primary">
+                  <div className="flex items-baseline gap-1 sm:gap-2">
+                    <span className="text-lg sm:text-xl font-bold text-primary">
                       Rs. {product.price}
                     </span>
                   </div>
@@ -168,9 +170,9 @@ const Menu = () => {
                 <CardFooter>
                   <Button
                     onClick={() => handleAddToCart(product)}
-                    className="w-full gradient-hero text-white shadow-glow"
+                    className="w-full gradient-hero text-white shadow-glow text-sm sm:text-base"
                   >
-                    <ShoppingCart className="mr-2 w-4 h-4" />
+                    <ShoppingCart className="mr-1 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4" />
                     Add to Cart
                   </Button>
                 </CardFooter>
