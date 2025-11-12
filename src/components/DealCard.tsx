@@ -79,12 +79,6 @@ const DealCard = ({
 
   return (
     <Card className="hover-lift overflow-hidden group relative border-2 border-red-200 hover:border-primary/50 transition-colors">
-      {isComingSoon && (
-        <div className="absolute top-4 right-4 z-10 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold">
-          Coming Soon
-        </div>
-      )}
-
       {image && (
         <div className="w-full h-64 md:h-72 lg:h-80 overflow-hidden">
           <img
@@ -106,9 +100,7 @@ const DealCard = ({
           Deal {dealNumber}
         </CardTitle>
         <CardDescription className="text-base">
-          {isComingSoon
-            ? "Custom deal option coming soon!"
-            : "Special combo package"}
+          Special combo package
         </CardDescription>
       </CardHeader>
 
@@ -125,22 +117,25 @@ const DealCard = ({
         <div className="mt-6 pt-4 border-t">
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">Rs. {price}</span>
-            {!isComingSoon && (
-              <span className="text-sm text-muted-foreground line-through">
-                Rs. {Math.round(price * 1.3)}
-              </span>
-            )}
+            <span className="text-sm text-muted-foreground line-through">
+              Rs. {Math.round(price * 1.3)}
+            </span>
           </div>
-          {!isComingSoon && (
-            <p className="text-xs text-accent mt-1 font-medium">
-              Save Rs. {Math.round(price * 0.3)}!
-            </p>
-          )}
+          <p className="text-xs text-accent mt-1 font-medium">
+            Save Rs. {Math.round(price * 0.3)}!
+          </p>
         </div>
       </CardContent>
 
       <CardFooter>
-        {!isComingSoon ? (
+        {dealNumber === 5 ? (
+          <Button
+            onClick={() => (window.location.href = "/menu")}
+            className="w-full gradient-hero text-white"
+          >
+            Create Your Own Deal
+          </Button>
+        ) : (
           <div className="w-full grid grid-cols-2 gap-3">
             <Button onClick={handleAddToCart} className="w-full">
               Add to Cart
@@ -152,10 +147,6 @@ const DealCard = ({
               Quick Order
             </Button>
           </div>
-        ) : (
-          <Button disabled className="w-full">
-            Coming Soon
-          </Button>
         )}
       </CardFooter>
     </Card>

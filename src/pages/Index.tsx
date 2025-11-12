@@ -10,25 +10,42 @@ import deal4Img from "@/assets/DEAL4.png";
 const featuredDeals = [
   {
     dealNumber: 1,
-    items: ["2 Loaded Rolls", "2 Masala Bars", "2 Hampa Bars", "1 Imli Sauce"],
+    items: [
+      "2 Lavashak Rolls",
+      "2 Masala Bars",
+      "2 Hampa Bars",
+      "1 Siwas Stick",
+      "1 Imli Dip",
+      "Toppings: Jellies, Masala",
+    ],
     image: deal1Img,
     price: 550,
   },
   {
     dealNumber: 2,
-    items: ["5 Loaded Rolls", "2 Masala Bars", "1 Siwas Stick", "1 Imli Dip"],
+    items: ["5 Lavashak Rolls", "2 Masala Bars", "1 Siwas Stick", "1 Imli Dip"],
     image: deal2Img,
-    price: 700,
+    price: 750,
   },
   {
     dealNumber: 3,
-    items: ["Balls", "Bars", "Stick", "Fruity Bars", "Jelly", "Imli Dip"],
+    items: [
+      "3 Balls",
+      "3 Bars Stick",
+      "3 Fruity Bars",
+      "Extra Jellies",
+      "1 Imli Dip",
+    ],
     image: deal3Img,
-    price: 500,
+    price: 550,
   },
   {
     dealNumber: 4,
-    items: ["6 Loaded Bars", "1 Imli Dip"],
+    items: [
+      "6 Lavashak Rolls",
+      "1 Imli Dip",
+      "Extra charges for pomegranate (otherwise dry pomegranate will be used)",
+    ],
     image: deal4Img,
     price: 750,
   },
