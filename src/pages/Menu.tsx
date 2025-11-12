@@ -37,8 +37,9 @@ const products: Product[] = [
   },
   {
     id: 3,
-    name: "Hampa Bar",
-    description: "Sweet and sour tropical fruit bar (1 strip)",
+    name: "Hampa Bar + 1 Siwas Stick",
+    description:
+      "Sweet and sour tropical fruit bar (1 strip) with a crispy Siwas Stick",
     price: 30,
     category: "Bars",
   },

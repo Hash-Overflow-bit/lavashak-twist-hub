@@ -39,8 +39,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card/95 backdrop-blur-md shadow-card" : "bg-card/90"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-md ${
+        isScrolled ? "bg-card/95 backdrop-blur-md" : "bg-card/90"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -65,12 +65,6 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Link to="/cart" className="relative">
-              <ShoppingCart className="w-6 h-6 text-foreground" />
-              <span className="absolute -top-2 -right-3 bg-primary text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-                {count}
-              </span>
-            </Link>
             <Button
               onClick={handleWhatsAppOrder}
               className="gradient-hero text-white shadow-glow"
@@ -87,17 +81,6 @@ const Navbar = () => {
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-        {/* Floating cart button for small screens */}
-        <Link
-          to="/cart"
-          className="md:hidden fixed bottom-6 right-4 z-50 flex items-center gap-3 bg-primary text-white px-3 py-2 rounded-full shadow-lg hover:scale-105 transition-transform"
-        >
-          <ShoppingCart className="w-5 h-5" />
-          <span className="text-sm font-medium">Cart</span>
-          <span className="absolute -top-2 -right-2 bg-white text-primary rounded-full text-xs w-5 h-5 flex items-center justify-center">
-            {count}
-          </span>
-        </Link>
 
         {/* Mobile Navigation */}
         {isOpen && (
@@ -125,6 +108,24 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* Floating cart button for small screens */}
+      <Link
+        to="/cart"
+        className="md:hidden fixed bottom-6 right-6 z-[100] flex items-center gap-3 bg-primary text-white px-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform"
+        style={{
+          position: "fixed",
+          bottom: "1.5rem",
+          right: "1.5rem",
+          zIndex: 100,
+        }}
+      >
+        <ShoppingCart className="w-5 h-5" />
+        <span className="text-sm font-medium">Cart</span>
+        <span className="absolute -top-2 -right-2 bg-white text-primary rounded-full text-xs w-5 h-5 flex items-center justify-center">
+          {count}
+        </span>
+      </Link>
     </nav>
   );
 };
