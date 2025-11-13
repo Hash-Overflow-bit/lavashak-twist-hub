@@ -9,7 +9,7 @@ import deal4Img from "@/assets/DEAL4.png";
 const deals = [
   {
     dealNumber: 1,
-    items: ["2 Loaded Rolls", "2 Masala Bars", "2 Hampa Bars", "1 Imli Sauce"],
+    items: ["2 Loaded Rolls", "2 Masala Bolls", "2 Hampa Bars", "1 Imli Sauce"],
     image: deal1Img,
     price: 550,
   },

@@ -13,7 +13,7 @@ const featuredDeals = [
     dealNumber: 1,
     items: [
       "2 Lavashak Rolls",
-      "2 Masala Bars",
+      "2 Masala Bolls",
       "2 Hampa Bars",
       "1 Siwas Stick",
       "1 Imli Dip",
@@ -39,7 +39,7 @@ const featuredDeals = [
       "1 Imli Dip",
     ],
     image: deal3Img,
-    price: 550,
+    price: 600,
   },
   {
     dealNumber: 4,
@@ -49,7 +49,7 @@ const featuredDeals = [
       "Extra charges for pomegranate (otherwise dry pomegranate will be used)",
     ],
     image: deal4Img,
-    price: 750,
+    price: 800,
   },
 ];
 
