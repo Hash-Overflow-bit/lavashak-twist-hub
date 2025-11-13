@@ -25,7 +25,7 @@ const deals = [
       "1 Imli Dip",
     ],
     image: deal2Img,
-    price: 500,
+    price: 600,
   },
   {
     dealNumber: 3,
@@ -37,14 +37,14 @@ const deals = [
       "1 Siwas Stick",
     ],
     image: deal3Img,
-    price: 700,
+    price: 750,
   },
 
   {
     dealNumber: 4,
     items: ["6 Loaded Bars", "1 Imli Dip"],
     image: deal4Img,
-    price: 750,
+    price: 800,
   },
   {
     dealNumber: 5,
